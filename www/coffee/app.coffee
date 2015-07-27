@@ -44,21 +44,21 @@ angular.module('starter', [
           templateUrl: 'templates/browse.html'
     )
 
-    .state('app.playlists',
-      url: '/playlists',
+    .state('app.locations',
+      url: '/locations',
       views:
         menuContent:
-          templateUrl: 'templates/playlists.html'
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/locations.html'
+          controller: 'LocationsCtrl'
     )
 
     .state('app.single',
-      url: '/playlists/:playlistId'
+      url: '/locations/:locationId'
       views:
         menuContent:
-          templateUrl: 'templates/playlist.html'
-          controller: 'PlaylistCtrl'
+          templateUrl: 'templates/location.html'
+          controller: 'SingleLocationCtrl'
     )
 
   # if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise '/app/playlists'
+  $urlRouterProvider.otherwise '/app/locations'
