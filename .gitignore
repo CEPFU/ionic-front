@@ -1,0 +1,14 @@
+# npm
+node_modules/
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# Maven
+target/
+
+# Eclipse
+.settings/
+.project
+.classpath
