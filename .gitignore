@@ -2,7 +2,7 @@
 node_modules/
 
 # IntelliJ IDEA
-.idea
+.idea/
 *.iml
 
 # Maven
@@ -12,3 +12,7 @@ target/
 .settings/
 .project
 .classpath
+
+# Cordova
+plugins/
+platforms/
