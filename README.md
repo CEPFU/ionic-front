@@ -13,7 +13,7 @@ Enjoy coffeescript + sass w/ live reloading.
 ```
 npm install
 bower install
-gulp watch
+gulp sass coffee watch
 ```
 In a separate window,
 ```
