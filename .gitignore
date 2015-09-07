@@ -16,3 +16,7 @@ target/
 # Cordova
 plugins/
 platforms/
+
+# Ionic
+.io-config.json
+gulp.log
