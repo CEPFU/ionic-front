@@ -18,6 +18,10 @@ angular.module('starter.controllers', ['angular.filter'])
       filtered[0]
   }
 
+.service 'ProfileService', () ->
+  this.newLocation = undefined
+  null
+
 .service 'LocationService', ($http, filterFilter) ->
   locationPromise = undefined
   this.getLocations = () ->
@@ -36,13 +40,13 @@ angular.module('starter.controllers', ['angular.filter'])
 .controller 'AppCtrl', () ->
   null
 
-.controller 'LocationsCtrl', ($scope, LocationService) ->
+.controller 'LocationsCtrl', ($scope, LocationService, ProfileService) ->
   LocationService.getLocations().success (data) ->
     $scope.locations = data
 
   this.current = LocationService.currentLocation
   $scope.$watch (() => this.current), (newVal) ->
-    LocationService.currentLocation = newVal
+    ProfileService.currentLocation = newVal
 
   null
 
@@ -50,23 +54,24 @@ angular.module('starter.controllers', ['angular.filter'])
   $scope.profiles = ProfilesFactory.profiles
   return null
 
-.controller 'SingleProfileCtrl', ($scope, $stateParams, ProfilesFactory, LocationService) ->
+.controller 'SingleProfileCtrl', ($scope, $stateParams, ProfilesFactory, LocationService, ProfileService) ->
   $scope.profile = ProfilesFactory.getProfile (parseInt $stateParams.profileId)
 
   LocationService.getLocations().success (data) ->
     $scope.locations = data
-    if LocationService.currentLocation?
-      $scope.profile.location = LocationService.currentLocation
+    if ProfileService.currentLocation?
+      $scope.profile.location = ProfileService.currentLocation
 
     $scope.location = LocationService.getLocation $scope.locations, $scope.profile.location
     LocationService.currentLocation = $scope?.location?.locationId
 
   update = (newLocation) ->
     if newLocation?
-      LocationService.currentLocation = undefined
+      ProfileService.currentLocation = undefined
+      LocationService.currentLocation = newLocation
       $scope.profile.location = newLocation
       $scope.location = LocationService.getLocation $scope.locations, $scope.profile.location
 
-  $scope.$watch (() -> LocationService.currentLocation), update
+  $scope.$watch (() -> ProfileService.currentLocation), update
 
   return null
