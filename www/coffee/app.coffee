@@ -1,19 +1,30 @@
 # Ionic Starter App
-# angular.module is a global place for creating, registering and retrieving Angular modules
-# 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-# the 2nd parameter is an array of 'requires'
-# 'starter.controllers' is found in controllers.js
-
 angular.module('starter', [
   'ionic'
   'starter.controllers'
 ])
 
+.factory '$localStorage', ['$window', ($window) ->
+  return {
+    set: (key, value) ->
+      $window.localStorage[key] = value
+    get: (key, defaultValue) ->
+      $window.localStorage[key] || defaultValue
+    setObject: (key, value) ->
+      $window.localStorage[key] = JSON.stringify value
+    getObject: (key) ->
+      value = $window.localStorage[key]
+      if not value? or value in ['undefined', 'null']
+        undefined
+      else
+        JSON.parse value
+}]
+
 .run(($ionicPlatform) ->
   $ionicPlatform.ready ->
 
-    # Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    # for form inputs)
+    # Hide the accessory bar by default
+    # (remove this to show the accessory bar above the keyboard for form inputs)
     if window.cordova and window.cordova.plugins.Keyboard
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar true
 
