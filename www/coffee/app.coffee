@@ -30,18 +30,20 @@ angular.module('starter', [
       controller: 'AppCtrl'
     )
 
-    .state('app.search',
-      url: '/search',
+    .state('app.profiles',
+      url: '/profiles'
       views:
         menuContent:
-          templateUrl: 'templates/search.html'
+          templateUrl: 'templates/profiles.html'
+          controller: 'ProfilesCtrl'
     )
 
-    .state('app.browse',
-      url: '/browse',
+    .state('app.profile',
+      url: '/profiles/:profileId'
       views:
         menuContent:
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/profile.html'
+          controller: 'SingleProfileCtrl'
     )
 
     .state('app.locations',
@@ -52,13 +54,5 @@ angular.module('starter', [
           controller: 'LocationsCtrl'
     )
 
-    .state('app.single',
-      url: '/locations/:locationId'
-      views:
-        menuContent:
-          templateUrl: 'templates/location.html'
-          controller: 'SingleLocationCtrl'
-    )
-
   # if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise '/app/locations'
+  $urlRouterProvider.otherwise '/app/profiles'

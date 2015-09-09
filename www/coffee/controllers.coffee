@@ -1,53 +1,76 @@
 angular.module('starter.controllers', ['angular.filter'])
 
-.controller 'AppCtrl', ($scope, $ionicModal, $timeout, $http) ->
-  # Form data for the login modal 1
-  $scope.loginData = {}
+.factory 'ProfilesFactory', (filterFilter) ->
+  profiles = [
+    name: "Profile 1"
+    id: 1
+    location: 12
+  ,
+    name: "Profile 2"
+    id: 5
+  ]
 
-  # Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', scope: $scope).then (modal) ->
-    $scope.modal = modal
+  {
+    profiles: profiles
+    getProfile: (id) ->
+      filtered = filterFilter profiles, (prof) ->
+        prof.id == id
+      filtered[0]
+  }
 
-  # Triggered in the login modal to close it
-  $scope.closeLogin = ->
-    $scope.modal.hide()
+.service 'LocationService', ($http, filterFilter) ->
+  locationPromise = undefined
+  this.getLocations = () ->
+    if not locationPromise?
+      locationPromise = $http.get('http://localhost:8080/location')
+    locationPromise
 
-  # Open the login modal
-  $scope.login = ->
-    $scope.modal.show()
+  this.getLocation = (locations, id) ->
+    filtered = filterFilter locations, (loc) ->
+      loc.locationId == id
+    filtered[0]
 
-  # Perform the login action when the user submits the login form
-  $scope.doLogin = ->
-    console.log 'Doing login', $scope.loginData
-    # Simulate a login delay. Remove this and replace with your login
-    # code if using a login system
-    $timeout (-> $scope.closeLogin()), 1000
+  this.currentLocation = undefined
+  null
 
-  $http.get('http://localhost:8080/location').success (data) ->
+.controller 'AppCtrl', () ->
+  null
+
+.controller 'LocationsCtrl', ($scope, LocationService) ->
+  LocationService.getLocations().success (data) ->
     $scope.locations = data
 
+  this.current = LocationService.currentLocation
+  $scope.$watch (() => this.current), (newVal) ->
+    LocationService.currentLocation = newVal
 
-.controller 'LocationsCtrl', ($scope) ->
-  console.log ''
+  null
 
-.controller 'SingleLocationCtrl', ($scope, $stateParams, filterFilter) ->
-  $scope.locationId = parseInt $stateParams.locationId
-  filtered = filterFilter $scope.locations, (loc) ->
-    loc.locationId == $scope.locationId
-  $scope.location = filtered[0]
-  $scope.latlong = [$scope.location.locationPosition.latitude, $scope.location.locationPosition.longitude]
+.controller 'ProfilesCtrl', ($scope, ProfilesFactory, LocationService) ->
+  $scope.profiles = ProfilesFactory.profiles
+  return null
 
-  map = L
-  .map 'map'
-  .setView $scope.latlong, 10
-  L.tileLayer 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'coolbox4life.dfc12b44',
-    accessToken: 'pk.eyJ1IjoiY29vbGJveDRsaWZlIiwiYSI6ImY2Zjk2YmQ1ZjMyYWM2ZDZkYjI2OWIzY2U3YzMwY2NhIn0.WGZ5HU-CIlNshi1UVm4z-g'
-  .addTo(map);
+.controller 'SingleProfileCtrl', ($scope, $stateParams, ProfilesFactory, LocationService) ->
+  $scope.profile = ProfilesFactory.getProfile (parseInt $stateParams.profileId)
 
-  marker = L.marker $scope.latlong
-  .addTo map
+  LocationService.getLocations().success (data) ->
+    $scope.locations = data
+    if LocationService.currentLocation?
+      $scope.profile.location = LocationService.currentLocation
+
+    $scope.location = LocationService.getLocation $scope.locations, $scope.profile.location
+    LocationService.currentLocation = $scope?.location?.locationId
+
+  update = (newLocation) ->
+    LocationService.currentLocation = undefined
+    console.log 'Updating with new location:', newLocation
+    if newLocation?
+      $scope.profile.location = newLocation
+      $scope.location = LocationService.getLocation $scope.locations, $scope.profile.location
+
+    console.log 'Current profile:', $scope.profile
+    console.log 'Profiles:', ProfilesFactory.profiles
+
+  $scope.$watch (() -> LocationService.currentLocation), update
 
   return null
