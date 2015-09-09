@@ -1,6 +1,7 @@
-<ion-view view-title="Profiles">
+<ion-view view-title="Profiles" ng-controller="ProfilesCtrl as ctrl">
     <ion-content>
         <ion-list>
+            <ion-item on-tap="ctrl.newProfile()" class="new-profile-item"><i class="icon ion-plus"></i> New Profile...</ion-item>
             <ion-item ui-sref="app.profile({profileId: profile.id})" ng-repeat="profile in profiles">
                 {{profile.name}}
             </ion-item>

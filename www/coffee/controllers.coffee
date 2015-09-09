@@ -3,27 +3,39 @@ angular.module('starter.controllers', ['angular.filter'])
 .service 'ProfileService', (filterFilter, $localStorage, $rootScope) ->
   @newLocation = undefined
 
-  @persist = (profiles) ->
-    if not profiles?
-      profiles = @profiles
-    console.log 'Persisting:', JSON.stringify profiles
-    $localStorage.setObject 'profiles', profiles
+  @persist = (profileData) ->
+    if not profileData?
+      profileData = @profileData
+    console.log 'Persisting:', JSON.stringify profileData
+    $localStorage.setObject 'profiles', profileData
 
-  @getProfile = (id) -> @profiles[id]
-  @putProfile = (id, profile) -> @profiles[id] = profile
-  @putProfile = (profile) -> @profiles[profile.id] = profile
+  @getProfiles = () -> @profileData.profiles
+  @getProfile = (id) -> @profileData.profiles[id]
+  @putProfile = (id, profile) -> @profileData.profiles[id] = profile
+  @putProfile = (profile) -> @profileData.profiles[profile.id] = profile
+  @newProfile = () ->
+    @profileData.lastId += 1
+    newProfile = {
+      name: 'New Profile'
+      id: @profileData.lastId
+    }
+    @putProfile newProfile
+    newProfile
 
-  @profiles = $localStorage.getObject 'profiles'
-  if not @profiles?
-    @profiles =
-      '1':
-        name: "Profile 1"
-        id: 1
-        location: 12
-      '5':
-        name: "Profile 2"
-        id: 5
-    @persist @profiles
+  @profileData = $localStorage.getObject 'profiles'
+  if not @profileData?
+    @profileData =
+      lastId: 1
+      profiles:
+        '0':
+          name: "Profile 1"
+          id: 1
+          location: 12
+        '1':
+          name: "Profile 2"
+          id: 5
+
+    @persist @profileData
 
   null
 
@@ -55,9 +67,14 @@ angular.module('starter.controllers', ['angular.filter'])
 
   null
 
-.controller 'ProfilesCtrl', ($scope, ProfileService, LocationService) ->
-  $scope.profiles = ProfileService.profiles
-  return null
+.controller 'ProfilesCtrl', ($scope, ProfileService, $state) ->
+  $scope.profiles = ProfileService.getProfiles()
+  @newProfile = () ->
+    np = ProfileService.newProfile()
+    $scope.profiles = ProfileService.getProfiles()
+    $state.go 'app.profile', {profileId: np.id}
+
+  null
 
 .controller 'SingleProfileCtrl',
 ($scope, $stateParams, ProfileService, LocationService) ->
