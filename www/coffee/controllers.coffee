@@ -62,14 +62,10 @@ angular.module('starter.controllers', ['angular.filter'])
     LocationService.currentLocation = $scope?.location?.locationId
 
   update = (newLocation) ->
-    LocationService.currentLocation = undefined
-    console.log 'Updating with new location:', newLocation
     if newLocation?
+      LocationService.currentLocation = undefined
       $scope.profile.location = newLocation
       $scope.location = LocationService.getLocation $scope.locations, $scope.profile.location
-
-    console.log 'Current profile:', $scope.profile
-    console.log 'Profiles:', ProfilesFactory.profiles
 
   $scope.$watch (() -> LocationService.currentLocation), update
 
