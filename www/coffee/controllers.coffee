@@ -3,16 +3,6 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 .controller 'AppCtrl', () ->
   null
 
-.controller 'LocationsCtrl', ($scope, LocationService, ProfileService) ->
-  LocationService.getLocations().success (data) ->
-    $scope.locations = data
-
-  @current = LocationService.currentLocation
-  $scope.$watch (() => @current), (newVal) ->
-    ProfileService.currentLocation = newVal
-
-  null
-
 .controller 'ProfilesCtrl', ($scope, ProfileService, $state) ->
   $scope.profiles = ProfileService.getProfiles()
   @newProfile = () ->

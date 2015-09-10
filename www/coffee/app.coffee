@@ -34,28 +34,25 @@ angular.module('starter', [
 
 .config ($stateProvider, $urlRouterProvider) ->
   $stateProvider
-    .state('app',
+    .state 'app',
       url: '/app'
       abstract: true
       templateUrl: 'templates/menu.html'
       controller: 'AppCtrl'
-    )
 
-    .state('app.profiles',
+    .state 'app.profiles',
       url: '/profiles'
       views:
         menuContent:
           templateUrl: 'templates/profiles.html'
           controller: 'ProfilesCtrl'
-    )
 
-    .state('app.profile',
+    .state 'app.profile',
       url: '/profiles/:profileId'
       views:
         menuContent:
           templateUrl: 'templates/profile.html'
           controller: 'SingleProfileCtrl'
-    )
 
     .state 'app.selectLocation',
       url: '/location',
@@ -63,14 +60,6 @@ angular.module('starter', [
         menuContent:
           templateUrl: 'templates/location.html'
           controller: 'LocationCtrl'
-
-    .state('app.locations',
-      url: '/locations',
-      views:
-        menuContent:
-          templateUrl: 'templates/locations.html'
-          controller: 'LocationsCtrl'
-    )
 
   # if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise '/app/profiles'

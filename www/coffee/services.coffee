@@ -107,17 +107,6 @@ angular.module 'starter.services', []
 
   null
 
-.service 'LocationService', ($http, filterFilter) ->
-  locationPromise = undefined
-  @getLocations = () ->
-    if not locationPromise?
-      locationPromise = $http.get('http://localhost:8080/location.json')
-    locationPromise
-
-  @getLocation = (locations, id) ->
-    filtered = filterFilter locations, (loc) ->
-      loc.locationId == id
-    filtered[0]
-
+.service 'LocationService', () ->
   @currentLocation = undefined
   null
