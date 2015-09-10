@@ -83,8 +83,7 @@ angular.module 'starter.services', []
   @newProfile = () ->
     @profileData.lastId += 1
     newProfile = {
-      name: 'New Profile'
-      id: @profileData.lastId
+      id: @profileData.lastId ? 0
     }
     @putProfile newProfile
     newProfile
@@ -92,16 +91,8 @@ angular.module 'starter.services', []
   @profileData = $localStorage.getObject 'profiles'
   if not @profileData?
     @profileData =
-      lastId: 1
-      profiles:
-        '0':
-          name: "Profile 1"
-          id: 0
-          location: 12
-        '1':
-          name: "Profile 2"
-          id: 1
-
+      lastId: 0
+      profiles: {}
     @persist @profileData
 
   null
