@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['angular.filter'])
+angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
 .service 'ProfileService', (filterFilter, $localStorage, $rootScope) ->
   @newLocation = undefined
@@ -104,3 +104,11 @@ angular.module('starter.controllers', ['angular.filter'])
     ProfileService.persist()
 
   return null
+
+
+.controller 'LocationCtrl', ($scope, MapService) ->
+  MapService.init 'map'
+  MapService.locate (loc) -> "You are within #{loc.accuracy / 2}
+    meters of this point"
+
+  null

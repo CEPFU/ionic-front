@@ -57,6 +57,13 @@ angular.module('starter', [
           controller: 'SingleProfileCtrl'
     )
 
+    .state 'app.selectLocation',
+      url: '/location',
+      views:
+        menuContent:
+          templateUrl: 'templates/location.html'
+          controller: 'LocationCtrl'
+
     .state('app.locations',
       url: '/locations',
       views:
