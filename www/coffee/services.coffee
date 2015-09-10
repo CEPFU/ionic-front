@@ -30,8 +30,7 @@ angular.module 'starter.services', []
   # Copies the relevant properties from the leaflet location
   @simpleLocation = (location) ->
     propertiesToCopy = [
-      'accuracy', 'bounds', 'latlng',
-      'latitude', 'longitude', 'timestamp'
+      'accuracy', 'bounds', 'latlng', 'timestamp'
     ]
 
     simple = {}

@@ -19,8 +19,8 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
   $scope.locationDescription = () ->
     if $scope.profile?.location?
-      "(#{$scope.profile.location.latitude},
-        #{$scope.profile.location.longitude})"
+      "(#{$scope.profile.location.latlng.lat},
+        #{$scope.profile.location.latlng.lng})"
     else
       null
 
