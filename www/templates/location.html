@@ -2,7 +2,7 @@
   <ion-content>
     <div>
         <button class="button button-light" on-tap="locateMe()">Find me</button>
-        <button class="button button-light" on-tap="selectLocation()">Use this location</button>
+        <button class="button button-light" on-tap="selectLocation()" ng-disabled="noLocation">Use this location</button>
     </div>
     <div id="map"></div>
   </ion-content>

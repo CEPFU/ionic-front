@@ -20,12 +20,17 @@ angular.module 'starter.services', []
     })
     .addTo @map
 
-    @map.on 'locationfound', (location) =>
-      for listener in @listeners
-        listener(location)
+    @map.on 'locationfound', @applyListeners
+
+  @applyListeners = (location) =>
+    for listener in @listeners
+      listener(location)
 
   @registerListener = (listener) ->
     @listeners.push(listener)
+
+  @popListener = (idx = -1) ->
+    @listeners.splice(idx, 1)
 
   # Copies the relevant properties from the leaflet location
   @simpleLocation = (location) ->
@@ -53,21 +58,23 @@ angular.module 'starter.services', []
       .openPopup()
 
   @locate = (popup, circle = false, options = {setView: true, maxZoom: 16}) ->
-    @map.locate options
-
-    @map.on 'locationfound', (location) =>
+    @registerListener (location) =>
       radius = location.accuracy / 2
 
       popupText = if popup? then popup(location) else null
       @addPin location, popupText
+
       if circle
         L.circle location.latlng, radius
           .addTo @map
-      null
+
+      @popListener()
+
+    @map.locate options
 
   null
 
-.service 'ProfileService', (filterFilter, $localStorage, $rootScope) ->
+.service 'ProfileService', ($localStorage) ->
   @newLocation = undefined
 
   @persist = (profileData) ->

@@ -42,15 +42,20 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
 .controller 'LocationCtrl',
   ($scope, MapService, LocationService, ProfileService, $ionicHistory) ->
-    $scope.hasLocation = () => @location?
+    $scope.noLocation = true
     $scope.locateMe = () -> MapService.locate()
+
+    @setLocation = (location) =>
+      @location = location
+      $scope.noLocation = not @location?
 
     MapService.init 'map'
     MapService.registerListener (location) =>
-      @location = MapService.simpleLocation location
+      @setLocation MapService.simpleLocation location
+      $scope.$apply () -> $scope.noLocation = not @location?
 
     if LocationService.currentLocation?
-      @location = LocationService.currentLocation
+      @setLocation LocationService.currentLocation
       MapService.setView @location
       MapService.addPin @location, "Selected location"
     else
