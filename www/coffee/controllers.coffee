@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
 
 .controller 'LocationCtrl',
-  ($scope, MapService, LocationService, ProfileService) ->
+  ($scope, MapService, LocationService, ProfileService, $ionicHistory) ->
     $scope.hasLocation = () => @location?
     $scope.locateMe = () -> MapService.locate()
 
@@ -60,6 +60,7 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
       if @location?
         console.log 'Setting location:', @location
         ProfileService.currentLocation = @location
+        $ionicHistory.goBack()
       else
         console.log 'Error: no location found'
 
