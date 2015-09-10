@@ -27,17 +27,40 @@ angular.module 'starter.services', []
   @registerListener = (listener) ->
     @listeners.push(listener)
 
+  # Copies the relevant properties from the leaflet location
+  @simpleLocation = (location) ->
+    propertiesToCopy = [
+      'accuracy', 'bounds', 'latlng',
+      'latitude', 'longitude', 'timestamp'
+    ]
+
+    simple = {}
+    for prop in propertiesToCopy
+      simple[prop] = location[prop]
+
+    simple
+
+  @setView = (location) ->
+    zoom = if location.accuracy? then Math.round(location.accuracy / 2) else 16
+    @map.setView location.latlng, zoom
+
+  # Adds a pin at the specified location and adds an optional popup
+  @addPin = (location, popup) =>
+    marker = L.marker location.latlng
+    .addTo @map
+
+    if popup?
+      marker.bindPopup popup
+      .openPopup()
+
   @locate = (popup, circle = false, options = {setView: true, maxZoom: 16}) ->
     @map.locate options
 
     @map.on 'locationfound', (location) =>
       radius = location.accuracy / 2
-      marker = L.marker location.latlng
-        .addTo @map
 
-      if popup?
-        marker.bindPopup popup(location)
-        .openPopup()
+      popupText = if popup? then popup(location) else null
+      @addPin location, popupText
       if circle
         L.circle location.latlng, radius
           .addTo @map
