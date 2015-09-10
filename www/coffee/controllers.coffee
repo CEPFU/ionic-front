@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['angular.filter'])
           location: 12
         '1':
           name: "Profile 2"
-          id: 5
+          id: 1
 
     @persist @profileData
 
