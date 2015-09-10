@@ -44,3 +44,57 @@ angular.module 'starter.services', []
       null
 
   null
+
+.service 'ProfileService', (filterFilter, $localStorage, $rootScope) ->
+  @newLocation = undefined
+
+  @persist = (profileData) ->
+    if not profileData?
+      profileData = @profileData
+    console.log 'Persisting:', JSON.stringify profileData
+    $localStorage.setObject 'profiles', profileData
+
+  @getProfiles = () -> @profileData.profiles
+  @getProfile = (id) -> @profileData.profiles[id]
+  @putProfile = (id, profile) -> @profileData.profiles[id] = profile
+  @putProfile = (profile) -> @profileData.profiles[profile.id] = profile
+  @newProfile = () ->
+    @profileData.lastId += 1
+    newProfile = {
+      name: 'New Profile'
+      id: @profileData.lastId
+    }
+    @putProfile newProfile
+    newProfile
+
+  @profileData = $localStorage.getObject 'profiles'
+  if not @profileData?
+    @profileData =
+      lastId: 1
+      profiles:
+        '0':
+          name: "Profile 1"
+          id: 0
+          location: 12
+        '1':
+          name: "Profile 2"
+          id: 1
+
+    @persist @profileData
+
+  null
+
+.service 'LocationService', ($http, filterFilter) ->
+  locationPromise = undefined
+  @getLocations = () ->
+    if not locationPromise?
+      locationPromise = $http.get('http://localhost:8080/location.json')
+    locationPromise
+
+  @getLocation = (locations, id) ->
+    filtered = filterFilter locations, (loc) ->
+      loc.locationId == id
+    filtered[0]
+
+  @currentLocation = undefined
+  null
