@@ -6,6 +6,7 @@
     "ionic-service-core": "~0.1.10"
   },
   "dependencies": {
-    "angular-filter": "~0.5.4"
+    "angular-filter": "~0.5.4",
+    "leaflet": "~0.7.5"
   }
 }
