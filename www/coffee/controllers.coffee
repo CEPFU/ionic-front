@@ -29,7 +29,7 @@ angular.module('starter.controllers', ['angular.filter'])
       profiles:
         '0':
           name: "Profile 1"
-          id: 1
+          id: 0
           location: 12
         '1':
           name: "Profile 2"
