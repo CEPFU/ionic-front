@@ -4,6 +4,16 @@ angular.module('starter', [
   'starter.controllers'
 ])
 
+.filter 'titleCase', ->
+  (input) ->
+    words = input.split(' ')
+    i = 0
+    while i < words.length
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
+      i++
+    words.join ' '
+
+
 .factory '$localStorage', ['$window', ($window) ->
   return {
     set: (key, value) ->
