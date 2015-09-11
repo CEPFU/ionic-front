@@ -1,4 +1,4 @@
-angular.module 'starter.services', []
+angular.module 'starter.services', ['ionic.service.core']
 
 .service 'MapService', () ->
   @map = null
@@ -106,4 +106,30 @@ angular.module 'starter.services', []
 
 .service 'LocationService', () ->
   @currentLocation = undefined
+  null
+
+.service 'RestService', ($ionicUser, $http) ->
+
+  @endpointUrl = 'http://localhost:8080/'
+  @getApiUrl = (target) -> @endpointUrl + target
+
+  @getUser = () ->
+    user = $ionicUser.get()
+    if not user.user_id
+      user.user_id = $ionicUser.generateGUID()
+    user
+
+  @sendProfile = (profile) ->
+    console.log 'Sending profile to backend:', profile
+    url = @getApiUrl 'profile'
+    payload = {
+      user: @getUser()
+    }
+
+    console.log 'API URL:', url
+    console.log 'Payload:', payload
+
+    null
+
+
   null

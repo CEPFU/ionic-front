@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
   null
 
 .controller 'SingleProfileCtrl',
-($scope, $stateParams, ProfileService, LocationService) ->
+($scope, $stateParams, ProfileService, LocationService, RestService) ->
   $scope.profile = ProfileService.getProfile $stateParams.profileId
   LocationService.currentLocation = $scope.profile.location
 
@@ -36,6 +36,8 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
     ProfileService.putProfile $scope.profile
     ProfileService.persist()
     LocationService.location = undefined
+
+    RestService.sendProfile $scope.profile
 
   return null
 
