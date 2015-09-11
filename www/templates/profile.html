@@ -9,6 +9,29 @@
         <div class="input-label">Location</div>
         <button class="button button-clear" ui-sref="app.selectLocation">{{locationDescription() || 'Select a location'}}</button>
       </label>
+      <label class="item item-input item-select">
+        <div class="input-label">New Property</div>
+        <button class="button button-clear"><i class="icon ion-plus"></i> Add Property</button>
+      </label>
+      <div ng-repeat="property in profile.properties">
+        <label class="item item-input item-select">
+          <div class="input-label">Property</div>
+          <select>
+            <option ng-repeat="available in config.profile.properties"
+                    ng-value="available.name"
+                    ng-model="property.name">
+                    {{available.name | titleCase}}
+            </option>
+          </select>
+        </label>
+        <i ng-hide="true" ng-init="inputs = inputsForProperty(property)"></i>
+        <label class="item item-input range range-positive" ng-repeat="input in inputs">
+          <div class="input-label" ng-hide="input.noLabel">{{input.label}}</div>
+          <i class="icon" ng-class="input.iconBefore" ng-show="input.iconBefore != null"></i>
+          <input type="{{input.type}}" name="{{input.label}}" min="{{property.min}}" max="{{property.max}}" ng-model="input.value">
+          <i class="icon" ng-class="input.iconAfter" ng-show="input.iconAfter != null"></i>
+        </label>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>

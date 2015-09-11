@@ -1,0 +1,30 @@
+{
+  "api": {
+    "mainUrl": "http://localhost:8080/",
+    "endpoints": {
+      "profile": {
+        "url": "profile/"
+      }
+    }
+  },
+  "profile": {
+    "properties": [
+      {
+        "name": "temperature",
+        "input": {
+          "type": "range",
+          "min": -40,
+          "max": 60
+        }
+      },
+      {
+        "name": "humidity",
+        "input": {
+          "type": "range",
+          "min": 0,
+          "max": 100
+        }
+      }
+    ]
+  }
+}

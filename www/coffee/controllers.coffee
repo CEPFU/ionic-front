@@ -1,6 +1,9 @@
 angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
-.controller 'AppCtrl', () ->
+.controller 'AppCtrl', ($rootScope, $http) ->
+  $http.get('config.json').success (data) ->
+    $rootScope.config = data
+
   null
 
 .controller 'ProfilesCtrl', ($scope, ProfileService, $state) ->
@@ -12,8 +15,8 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
   null
 
-.controller 'SingleProfileCtrl',
-($scope, $stateParams, ProfileService, LocationService, RestService) ->
+.controller 'SingleProfileCtrl', ($rootScope, $scope, $stateParams,
+    ProfileService, LocationService, RestService, filterFilter) ->
   $scope.profile = ProfileService.getProfile $stateParams.profileId
   LocationService.currentLocation = $scope.profile.location
 
@@ -38,6 +41,31 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
     LocationService.location = undefined
 
     RestService.sendProfile $scope.profile
+
+  $scope.inputsForProperty = (prop) ->
+    result = []
+
+    props = $rootScope.config.profile.properties
+
+    filtered = filterFilter props, (current) -> current.name == prop.name
+    propertyConfig = filtered[0]
+    console.log 'Property Config:', propertyConfig
+
+    switch propertyConfig.input.type
+      when 'range'
+        result.push
+          label: 'Minimum'
+          type: 'range'
+          iconBefore: 'ion-ios-sunny-outline'
+          iconAfter: 'ion-ios-snowy'
+        result.push
+          label: 'Maximum'
+          type: 'range'
+          iconBefore: 'ion-ios-sunny-outline'
+          iconAfter: 'ion-ios-snowy'
+
+
+    result
 
   return null
 
