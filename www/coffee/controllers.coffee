@@ -42,32 +42,25 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
     RestService.sendProfile $scope.profile
 
-  $scope.inputsForProperty = (prop) ->
-    result = []
+  $scope.addProperty = () ->
+    if not $scope.profile.properties?
+      $scope.profile.properties = []
+    $scope.profile.properties.push {}
 
-    props = $rootScope.config.profile.properties
+  $scope.asList = (properties) ->
+    res = []
+    for name, prop of properties
+      res.push(prop)
+    res
 
-    filtered = filterFilter props, (current) -> current.name == prop.name
-    propertyConfig = filtered[0]
-    console.log 'Property Config:', propertyConfig
-
-    switch propertyConfig.input.type
+  $scope.getClasses = (input) ->
+    switch input.type
+      when 'select'
+        'item-select'
       when 'range'
-        result.push
-          label: 'Minimum'
-          type: 'range'
-          iconBefore: 'ion-ios-sunny-outline'
-          iconAfter: 'ion-ios-snowy'
-        result.push
-          label: 'Maximum'
-          type: 'range'
-          iconBefore: 'ion-ios-sunny-outline'
-          iconAfter: 'ion-ios-snowy'
+        'range range-positive'
 
-
-    result
-
-  return null
+  null
 
 
 .controller 'LocationCtrl',

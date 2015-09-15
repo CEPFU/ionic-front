@@ -8,16 +8,32 @@
     }
   },
   "profile": {
-    "properties": [
-      {
+    "properties": {
+      "temperature": {
         "name": "temperature",
-        "input": {
-          "type": "range",
-          "min": -40,
-          "max": 60
-        }
+        "inputs": [
+          {
+            "label": "Is",
+            "type": "select",
+            "options": [
+              "less",
+              "less equals",
+              "equals",
+              "greater equals",
+              "greater"
+            ]
+          },
+          {
+            "label": "Than",
+            "type": "range",
+            "iconBefore": "ion-ios-sunny-outline",
+            "iconAfter": "ion-ios-snowy",
+            "min": -40,
+            "max": 60
+          }
+        ]
       },
-      {
+      "humidity": {
         "name": "humidity",
         "input": {
           "type": "range",
@@ -25,6 +41,6 @@
           "max": 100
         }
       }
-    ]
+    }
   }
 }
