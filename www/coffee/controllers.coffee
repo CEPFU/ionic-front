@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
 .controller 'AppCtrl', ($rootScope, $http) ->
-  $http.get('config.json').success (data) ->
+  $http.get('json/config.json').success (data) ->
     $rootScope.config = data
 
   null

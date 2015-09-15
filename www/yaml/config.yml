@@ -1,0 +1,41 @@
+api:
+  mainUrl: http://localhost:8080/
+  endpoints:
+    profile:
+      url: profile/
+
+inputs:
+  comparison: &comparisonOperator
+    name: is
+    type: select
+    options:
+      - less
+      - less equals
+      - equals
+      - greater equals
+      - greater
+
+profile:
+  properties:
+    temperature:
+      name: temperature
+      inputs:
+        - *comparisonOperator
+        -
+          name: than
+          type: range
+          iconBefore: ion-ios-sunny-outline
+          iconAfter: ion-ios-snowy
+          min: -40
+          max: 60
+    humidity:
+      name: humidity
+      inputs:
+        - *comparisonOperator
+        -
+          name: than
+          type: range
+          iconBefore: ion-ios-sunny-outline
+          iconAfter: ion-ios-snowy
+          min: -40
+          max: 60

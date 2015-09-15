@@ -7,14 +7,23 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var coffee = require('gulp-coffee');
+var yaml = require('gulp-yaml');
 
 var paths = {
   sass: ['./www/**/*.scss'],
-  coffee: ['./www/**/*.coffee']
-
+  coffee: ['./www/**/*.coffee'],
+  yaml: ['./www/**/*.yml']
 };
 
 gulp.task('default', ['sass']);
+
+gulp.task('yaml', function(done) {
+  gulp.src('./www/yaml/**.yml')
+    .pipe(yaml())
+    .pipe(rename({ extname: '.json' }))
+    .pipe(gulp.dest('./www/json'))
+    .on('end', done);
+});
 
 gulp.task('sass', function(done) {
   gulp.src('./www/sass/**.scss')
@@ -35,6 +44,7 @@ gulp.task('coffee', function(done) {
 })
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass'])
-  gulp.watch(paths.coffee, ['coffee'])
+  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.coffee, ['coffee']);
+  gulp.watch(paths.yaml, ['yaml']);
 });
