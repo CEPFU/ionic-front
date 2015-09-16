@@ -21,13 +21,7 @@
               <option value="" disabled="disabled">Choose a property</option>
           </select>
         </label>
-        <!-- TODO: Use an angular-directive to match different input types with templates -->
-        <!--<label class="item item-input" ng-class="getClasses(input)" ng-repeat="input in property.inputs">
-          <div class="input-label" ng-hide="input.noLabel">{{input.label}}</div>
-          <i class="icon" ng-class="input.iconBefore" ng-show="input.iconBefore != null"></i>
-          <input type="{{input.type}}" name="{{input.label}}" min="{{property.min}}" max="{{property.max}}" ng-model="input.value">
-          <i class="icon" ng-class="input.iconAfter" ng-show="input.iconAfter != null"></i>
-        </label>-->
+        <profile-input ng-repeat="input in config.profile.properties[property.name].inputs" input="input" profile="profile" property="property"></profile-input>
       </div>
     </ion-list>
   </ion-content>

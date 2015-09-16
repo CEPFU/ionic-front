@@ -2,6 +2,7 @@
 angular.module('starter', [
   'ionic'
   'starter.controllers'
+  'starter.directives'
 ])
 
 .filter 'titleCase', ->
