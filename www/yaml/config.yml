@@ -9,11 +9,21 @@ inputs:
     name: is
     type: select
     options:
-      - less
-      - less equals
-      - equals
-      - greater equals
-      - greater
+      -
+        value: lt
+        display: less than
+      -
+        value: leq
+        display: less than or equal to
+      -
+        value: eq
+        display: equal to
+      -
+        value: geq
+        display: greater than or equal to
+      -
+        value: gt
+        display: greater than
 
 profile:
   properties:

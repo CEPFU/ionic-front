@@ -1,7 +1,7 @@
 <label class="item item-input item-select">
   <div class="input-label" ng-show="input.name != null">{{input.name | titleCase}}</div>
   <select ng-model="property.inputs[input.name].value"
-          ng-options="option as (option | titleCase) for option in input.options">
+          ng-options="option.value as option.display for option in input.options">
 
   </select>
 </label>
