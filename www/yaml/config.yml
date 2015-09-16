@@ -37,5 +37,5 @@ profile:
           type: range
           iconBefore: ion-ios-sunny-outline
           iconAfter: ion-ios-snowy
-          min: -40
-          max: 60
+          min: 0
+          max: 100
