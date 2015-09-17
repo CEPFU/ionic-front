@@ -21,7 +21,7 @@
               <option value="" disabled="disabled">Choose a property</option>
           </select>
         </label>
-        <profile-input ng-repeat="input in config.profile.properties[property.name].inputs" input="input" profile="profile" property="property"></profile-input>
+        <profile-input ng-repeat="input in asList(config.profile.properties[property.name].inputs)" input="input" profile="profile" property="property"></profile-input>
       </div>
     </ion-list>
   </ion-content>

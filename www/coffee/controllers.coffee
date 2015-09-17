@@ -4,6 +4,12 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
   $http.get('json/config.json').success (data) ->
     $rootScope.config = data
 
+  $rootScope.asList = (object) ->
+    res = []
+    for name, prop of object
+      res.push(prop)
+    res
+
   null
 
 .controller 'ProfilesCtrl', ($scope, ProfileService, $state) ->
@@ -46,12 +52,6 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
     if not $scope.profile.properties?
       $scope.profile.properties = []
     $scope.profile.properties.push {}
-
-  $scope.asList = (properties) ->
-    res = []
-    for name, prop of properties
-      res.push(prop)
-    res
 
   $scope.getClasses = (input) ->
     switch input.type

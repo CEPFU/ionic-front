@@ -108,10 +108,11 @@ angular.module 'starter.services', ['ionic.service.core']
   @currentLocation = undefined
   null
 
-.service 'RestService', ($ionicUser, $http) ->
+.service 'RestService', ($rootScope, $ionicUser, $http, filterFilter) ->
 
-  @endpointUrl = 'http://localhost:8080/'
-  @getApiUrl = (target) -> @endpointUrl + target
+  @endpointUrl = $rootScope.config.api.mainUrl
+  @getApiUrl = (target) ->
+    @endpointUrl + $rootScope.config.api.endpoints[target].url
 
   @getUser = () ->
     user = $ionicUser.get()
@@ -119,15 +120,77 @@ angular.module 'starter.services', ['ionic.service.core']
       user.user_id = $ionicUser.generateGUID()
     user
 
+  # Copies the specified properties into a new object (shallow?)
+  @selectiveCopy = (obj, properties) ->
+    newObj = {}
+    for prop in properties
+      newObj[prop] = obj[prop]
+    newObj
+
+  @findJavaClass = (inputConfig, inputValue) ->
+    if inputConfig.javaClass?
+      inputConfig.javaClass
+    else
+      if inputConfig.options?
+        inputConfig.options[inputValue.value]?.javaClass
+
+  @getValue = (config, input) ->
+    value = input.value
+    if config.valueType?
+      switch config.valueType
+        when 'int'
+          value = parseInt value
+        when 'float'
+          value = parseFloat value
+    value
+
+  @transformProfile = (profile) ->
+    newProfile = @selectiveCopy profile, ['name', 'location', 'id']
+    newProfile.rule = {
+      '@class': 'JSONAnd'
+      ofOperands: []
+    }
+
+    for prop in profile.properties
+      config = $rootScope.config.profile.properties[prop.name]
+
+      operand = {
+        '@class': 'JSONMatchToStation'
+        toStation: newProfile.location # TODO: Find new format?!
+      }
+
+      console.log 'Prop:', prop
+      console.log 'Config:', config
+
+      switch config.javaStructure.type
+        when 'attributeToObject'
+          classFrom = config.javaStructure.classFrom
+          valueFrom = config.javaStructure.valueFrom
+          javaClass = @findJavaClass config.inputs[classFrom],
+            prop.inputs[classFrom]
+          value = @getValue config.inputs[valueFrom], prop.inputs[valueFrom]
+          operand.matchOperator = {
+            '@class': javaClass
+            attribute: prop.name
+            toObject: value
+          }
+
+      newProfile.rule.ofOperands.push operand
+
+    newProfile
+
   @sendProfile = (profile) ->
     console.log 'Sending profile to backend:', profile
     url = @getApiUrl 'profile'
+
     payload = {
+      profile: @transformProfile profile
       user: @getUser()
     }
 
     console.log 'API URL:', url
     console.log 'Payload:', payload
+    console.log 'JSON Payload:', JSON.stringify payload
 
     null
 

@@ -9,43 +9,58 @@ inputs:
     name: is
     type: select
     options:
-      -
+      lt:
         value: lt
         display: less than
-      -
+        javaClass: JSONLess
+      leq:
         value: leq
         display: less than or equal to
-      -
+        javaClass: JSONLessEqual
+      eq:
         value: eq
         display: equal to
-      -
+        javaClass: JSONEqual
+      geq:
         value: geq
         display: greater than or equal to
-      -
+        javaClass: JSONGreaterEqual
+      gt:
         value: gt
         display: greater than
+        javaClass: JSONGreater
 
 profile:
   properties:
     temperature:
       name: temperature
       inputs:
-        - *comparisonOperator
-        -
+        is: *comparisonOperator
+        than:
           name: than
           type: range
+          valueType: int
           iconBefore: ion-ios-sunny-outline
           iconAfter: ion-ios-snowy
           min: -40
           max: 60
+      javaStructure:
+        type: attributeToObject
+        classFrom: is
+        valueFrom: than
     humidity:
       name: humidity
       inputs:
-        - *comparisonOperator
-        -
+        is: *comparisonOperator
+        than:
           name: than
           type: range
+          valueType: int
           iconBefore: ion-ios-sunny-outline
           iconAfter: ion-ios-snowy
           min: 0
           max: 100
+      javaStructure:
+        type: attributeToObject
+        classFrom: is
+        valueFrom: than

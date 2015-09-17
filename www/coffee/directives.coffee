@@ -11,6 +11,5 @@ angular.module 'starter.directives', []
       "templates/inputs/#{scope.input.type}.html"
   template: '<div ng-include="getContentUrl()"></div>'
   controllerAs: 'inputCtrl'
-  controller: () ->
-
-    null
+  controller: ($rootScope, $scope) ->
+    $scope.asList = $rootScope.asList
