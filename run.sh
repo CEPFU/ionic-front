@@ -1,4 +1,6 @@
 #!/bin/bash
+# Add locally installed node modules to path but prefer global ones
+PATH=$PATH:$(pwd)/node_modules/.bin
 npm install
 bower install
 killall gulp
