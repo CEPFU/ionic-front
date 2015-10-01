@@ -8,6 +8,7 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var coffee = require('gulp-coffee');
 var yaml = require('gulp-yaml');
+var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
   sass: ['./www/**/*.scss'],
@@ -36,9 +37,11 @@ gulp.task('sass', function(done) {
 
 gulp.task('coffee', function(done) {
   gulp.src(paths.coffee)
-  .pipe(coffee({bare: false})
+  .pipe(sourcemaps.init())
+  .pipe(coffee({bare: false, map: true})
   .on('error', gutil.log.bind(gutil, 'Coffee Error')))
   .pipe(concat('application.js'))
+  .pipe(sourcemaps.write('./maps'))
   .pipe(gulp.dest('./www/js'))
   .on('end', done)
 })
