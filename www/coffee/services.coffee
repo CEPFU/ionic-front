@@ -151,7 +151,7 @@ angular.module 'starter.services', ['ionic.service.core']
       ofOperands: []
     }
 
-    for prop in profile.properties
+    for prop in profile.properties?
       config = $rootScope.config.profile.properties[prop.name]
 
       operand = {
