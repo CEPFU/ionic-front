@@ -3,20 +3,23 @@
   "version": "1.0.0",
   "description": "An Ionic project",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/CEPFU/ionic-front.git"
+    "type": "git",
+    "url": "https://github.com/CEPFU/ionic-front.git"
   },
   "author": "Simon Kalt <simon.kalt@fu-berlin.de>",
   "license": "MIT",
   "dependencies": {
+    "cordova": "^5.3.3",
     "gulp": "^3.5.6",
     "gulp-coffee": "^2.1.1",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^0.7.1",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^0.6.8",
-    "gulp-yaml": "^0.2.4"
+    "gulp-yaml": "^0.2.4",
+    "ionic": "^1.6.5"
   },
   "devDependencies": {
     "bower": "^1.3.3",
