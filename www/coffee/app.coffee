@@ -3,6 +3,9 @@ angular.module('starter', [
   'ionic'
   'starter.controllers'
   'starter.directives'
+  'starter.services'
+  'ionic.service.core'
+  'ionic.service.push'
 ])
 
 .filter 'titleCase', ->
@@ -31,7 +34,7 @@ angular.module('starter', [
         JSON.parse value
 }]
 
-.run(($ionicPlatform) ->
+.run(($ionicPlatform, $ionicUser) ->
   $ionicPlatform.ready ->
 
     # Hide the accessory bar by default
@@ -41,6 +44,30 @@ angular.module('starter', [
 
     # org.apache.cordova.statusbar required
     StatusBar.styleDefault() if window.StatusBar
+
+    Ionic.io()
+    push = new Ionic.Push(
+      'debug': true
+      'onNotification': (notification) ->
+        payload = notification['_raw'].text
+        alert payload
+        return
+      'onRegister': (data) ->
+        console.log 'Device token (X):', data.token
+        alert data.token
+        user = $ionicUser.get()
+        push.addTokenToUser user
+        console.log 'User:', user
+        return
+    )
+
+    push.register()
+
+    $rootScope.$on '$cordovaPush:tokenReceived', (event, data) ->
+      console.log 'Got token', data.token, data.platform
+      # Do something with the token
+      return
+
 )
 
 .config ($stateProvider, $urlRouterProvider) ->
