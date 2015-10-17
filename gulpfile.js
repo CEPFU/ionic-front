@@ -16,7 +16,7 @@ var paths = {
   yaml: ['./www/**/*.yml']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['yaml', 'sass', 'coffee']);
 
 gulp.task('yaml', function(done) {
   gulp.src('./www/yaml/**.yml')
