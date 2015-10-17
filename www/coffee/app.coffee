@@ -34,7 +34,7 @@ angular.module('starter', [
         JSON.parse value
 }]
 
-.run(($ionicPlatform, $ionicUser) ->
+.run(($ionicPlatform, $ionicUser, $rootScope) ->
   $ionicPlatform.ready ->
 
     # Hide the accessory bar by default
