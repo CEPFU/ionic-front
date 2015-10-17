@@ -34,7 +34,7 @@ angular.module('starter', [
         JSON.parse value
 }]
 
-.run(($ionicPlatform, $ionicUser, $rootScope) ->
+.run(($ionicPlatform, $ionicUser, $rootScope, $http) ->
   $ionicPlatform.ready ->
 
     # Hide the accessory bar by default
@@ -56,18 +56,37 @@ angular.module('starter', [
         console.log 'Device token (X):', data.token
         alert data.token
         user = $ionicUser.get()
-        push.addTokenToUser user
+        if not user.user_id
+          user.user_id = $ionicUser.generateGUID()
+        try
+          push.addTokenToUser $ionicUser
+        catch error
+          console.log 'Error while adding token to user:', error
         console.log 'User:', user
         return
     )
 
-    push.register()
+    window.push = push
+
+    try
+      push.register()
+    catch error
+      console.log 'Error while registering for push:', error
 
     $rootScope.$on '$cordovaPush:tokenReceived', (event, data) ->
       console.log 'Got token', data.token, data.platform
       # Do something with the token
       return
 
+
+    $http.get('http://pokeapi.co/api/v1/pokemon/1/').then(
+      (success) ->
+        console.log 'Win:', success
+        alert success.data.name
+    ,
+      (failure) ->
+        console.log 'Fail:', failure
+    )
 )
 
 .config ($stateProvider, $urlRouterProvider) ->
