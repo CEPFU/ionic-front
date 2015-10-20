@@ -41,8 +41,6 @@
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		6867B7B90157416480578D03 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 22BFAA8E04EA4DE2995BA88E /* CDVLogger.m */; };
 		EF2414C7C09943ECA224DD9F /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD052E689B643EDA962E3AC /* CDVDevice.m */; };
-		3FC9170579804A319BC98E01 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D91E70E3E54D26A8D6A0FF /* CDVLocation.m */; };
-		47ADD9AF95B548C1B55EA691 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C764902C9EEF4075935671FB /* CoreLocation.framework */; };
 		6709D2383DFA40FD8CD4C907 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1A34EEB2F74F23A763AF8B /* CDVSplashScreen.m */; };
 		0CB2352EED7D4FC79EFD5049 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B3D1531DB47E18742DD6E /* CDVViewController+SplashScreen.m */; };
 		9AF5813E84BE4131ADDEB36D /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FE522E98FAE24012AD8C67A3 /* CDVStatusBar.m */; };
@@ -50,6 +48,8 @@
 		3459DD70279B4A4EA782B37B /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0702E6A8F48F8A0B2E1DF /* UIWebViewExtension.m */; };
 		31A566B343144AF887D210F1 /* AppDelegate+notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6FDC9664D54053A28EDE4B /* AppDelegate+notification.m */; };
 		694331614D9F42118556FE8F /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A990D535145FAB9BA1128 /* PushPlugin.m */; };
+		C0C5F1CD818F45BEB38D6D40 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCDDA728A34947AA122586 /* CDVLocation.m */; };
+		F389247306B0494993CB2D6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B519AC03E6947D887AD3A7A /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,9 +119,6 @@
 		92EB0836815A486AAE783646 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		CFD052E689B643EDA962E3AC /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		2F9CF5B28523480EBAC6D045 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		E6D91E70E3E54D26A8D6A0FF /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		862C4BDDE6FB4E8AB33F16E5 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		C764902C9EEF4075935671FB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		BF1A34EEB2F74F23A763AF8B /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		4A9B3D1531DB47E18742DD6E /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		7F8B726E91B84857912BE537 /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
@@ -136,6 +133,9 @@
 		687A990D535145FAB9BA1128 /* PushPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "PushPlugin.m"; path = "phonegap-plugin-push/PushPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		439553B14FE347E89CD5F525 /* AppDelegate+notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+notification.h"; path = "phonegap-plugin-push/AppDelegate+notification.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		994A34461CDC4B1280DCB717 /* PushPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PushPlugin.h"; path = "phonegap-plugin-push/PushPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		26DCDDA728A34947AA122586 /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		364482ACB43B45FE8F0AD217 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		1B519AC03E6947D887AD3A7A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				47ADD9AF95B548C1B55EA691 /* CoreLocation.framework in Frameworks */,
+				F389247306B0494993CB2D6F /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +220,7 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
-				C764902C9EEF4075935671FB /* CoreLocation.framework */,
+				1B519AC03E6947D887AD3A7A /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -240,8 +240,6 @@
 				92EB0836815A486AAE783646 /* CDVLogger.h */,
 				CFD052E689B643EDA962E3AC /* CDVDevice.m */,
 				2F9CF5B28523480EBAC6D045 /* CDVDevice.h */,
-				E6D91E70E3E54D26A8D6A0FF /* CDVLocation.m */,
-				862C4BDDE6FB4E8AB33F16E5 /* CDVLocation.h */,
 				BF1A34EEB2F74F23A763AF8B /* CDVSplashScreen.m */,
 				4A9B3D1531DB47E18742DD6E /* CDVViewController+SplashScreen.m */,
 				7F8B726E91B84857912BE537 /* CDVSplashScreen.h */,
@@ -256,6 +254,8 @@
 				687A990D535145FAB9BA1128 /* PushPlugin.m */,
 				439553B14FE347E89CD5F525 /* AppDelegate+notification.h */,
 				994A34461CDC4B1280DCB717 /* PushPlugin.h */,
+				26DCDDA728A34947AA122586 /* CDVLocation.m */,
+				364482ACB43B45FE8F0AD217 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = "ionic-front/Plugins";
@@ -442,7 +442,6 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				6867B7B90157416480578D03 /* CDVLogger.m in Sources */,
 				EF2414C7C09943ECA224DD9F /* CDVDevice.m in Sources */,
-				3FC9170579804A319BC98E01 /* CDVLocation.m in Sources */,
 				6709D2383DFA40FD8CD4C907 /* CDVSplashScreen.m in Sources */,
 				0CB2352EED7D4FC79EFD5049 /* CDVViewController+SplashScreen.m in Sources */,
 				9AF5813E84BE4131ADDEB36D /* CDVStatusBar.m in Sources */,
@@ -450,6 +449,7 @@
 				3459DD70279B4A4EA782B37B /* UIWebViewExtension.m in Sources */,
 				31A566B343144AF887D210F1 /* AppDelegate+notification.m in Sources */,
 				694331614D9F42118556FE8F /* PushPlugin.m in Sources */,
+				C0C5F1CD818F45BEB38D6D40 /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

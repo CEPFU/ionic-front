@@ -88,6 +88,16 @@
                         }
                     ]
                 }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.GeoBroker\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -96,9 +106,6 @@
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
-        },
-        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         },
         "cordova-plugin-splashscreen": {
@@ -114,6 +121,9 @@
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         },
         "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         }
     },
