@@ -1,14 +1,15 @@
 {
-  "name": "myApp",
+  "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.1",
-    "ionic-service-core": "~0.1.10",
-    "ngCordova": "~0.1.20-alpha",
-    "ionic-platform-web-client": "~0.1.0"
+    "ionic": "driftyco/ionic-bower#1.1.0",
+    "ionic-platform-web-client": "~0.2.0"
   },
   "dependencies": {
-    "angular-filter": "~0.5.4",
+    "ionic-service-core": "~0.1.10",
+    "ngCordova": "~0.1.20-alpha",
+    "ionic-platform-web-client": "~0.2.0",
+    "angular-filter": "~0.5.7",
     "leaflet": "~0.7.5"
   }
 }
