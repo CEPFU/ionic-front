@@ -54,7 +54,6 @@ angular.module('starter', [
         return
       'onRegister': (data) ->
         console.log 'Device token (X):', data.token
-        alert data.token
         user = $ionicUser.get()
         if not user.user_id
           user.user_id = $ionicUser.generateGUID()
