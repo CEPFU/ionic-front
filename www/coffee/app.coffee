@@ -66,6 +66,7 @@ angular.module('starter', [
         console.log 'Device token (X):', data.token
         try
           push.addTokenToUser user
+          user.save()
         catch error
           console.log 'Error while adding token to user:', error
         console.log 'User:', user
