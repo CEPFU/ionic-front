@@ -46,26 +46,31 @@ angular.module('starter', [
     StatusBar.styleDefault() if window.StatusBar
 
     Ionic.io()
+
+    user = Ionic.User.current()
+    if not user.id
+      user.id = Ionic.User.anonymousId()
+      user.save().then(
+        (success) ->
+          console.log 'Success:', success
+      ,
+        (failure) ->
+          console.log 'Failure', failure
+      )
     push = new Ionic.Push(
       'debug': true
       'onNotification': (notification) ->
-        payload = notification['_raw'].text
-        alert payload
+        console.log notification
         return
       'onRegister': (data) ->
         console.log 'Device token (X):', data.token
-        user = $ionicUser.get()
-        if not user.user_id
-          user.user_id = $ionicUser.generateGUID()
         try
-          push.addTokenToUser $ionicUser
+          push.addTokenToUser user
         catch error
           console.log 'Error while adding token to user:', error
         console.log 'User:', user
         return
     )
-
-    window.push = push
 
     try
       push.register()
