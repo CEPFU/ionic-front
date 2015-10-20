@@ -14,8 +14,8 @@ target/
 .classpath
 
 # Cordova
-plugins/
-platforms/
+# plugins/
+# platforms/
 
 # Ionic
 .io-config.json
