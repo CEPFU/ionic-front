@@ -37,11 +37,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -94,10 +94,10 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         },
-        "phonegap-plugin-push": {
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         },
-        "cordova-plugin-geolocation": {
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.ionicframework.ionicfront305973"
         }
     },

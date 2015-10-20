@@ -46,10 +46,10 @@
 		9AF5813E84BE4131ADDEB36D /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FE522E98FAE24012AD8C67A3 /* CDVStatusBar.m */; };
 		5F95D0FF32B44C79A385C4E3 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C850852CE8334BF5BE8381C3 /* IonicKeyboard.m */; };
 		3459DD70279B4A4EA782B37B /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B0702E6A8F48F8A0B2E1DF /* UIWebViewExtension.m */; };
-		31A566B343144AF887D210F1 /* AppDelegate+notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6FDC9664D54053A28EDE4B /* AppDelegate+notification.m */; };
-		694331614D9F42118556FE8F /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A990D535145FAB9BA1128 /* PushPlugin.m */; };
 		C0C5F1CD818F45BEB38D6D40 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DCDDA728A34947AA122586 /* CDVLocation.m */; };
 		F389247306B0494993CB2D6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B519AC03E6947D887AD3A7A /* CoreLocation.framework */; };
+		0DBE386DE3AF4AE5ADB60994 /* AppDelegate+notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4A61E7ED5E4813913A2F2C /* AppDelegate+notification.m */; };
+		61E7436A285A4A50A7CF9F80 /* PushPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9435E79263F04D679E63223C /* PushPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,13 +129,13 @@
 		49B0702E6A8F48F8A0B2E1DF /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "ionic-plugin-keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		52E4A170D9104D50958B0534 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		9897D399B28740C496A72830 /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "ionic-plugin-keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		7D6FDC9664D54053A28EDE4B /* AppDelegate+notification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+notification.m"; path = "phonegap-plugin-push/AppDelegate+notification.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		687A990D535145FAB9BA1128 /* PushPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "PushPlugin.m"; path = "phonegap-plugin-push/PushPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		439553B14FE347E89CD5F525 /* AppDelegate+notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+notification.h"; path = "phonegap-plugin-push/AppDelegate+notification.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		994A34461CDC4B1280DCB717 /* PushPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PushPlugin.h"; path = "phonegap-plugin-push/PushPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		26DCDDA728A34947AA122586 /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		364482ACB43B45FE8F0AD217 /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		1B519AC03E6947D887AD3A7A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		0F4A61E7ED5E4813913A2F2C /* AppDelegate+notification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+notification.m"; path = "phonegap-plugin-push/AppDelegate+notification.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		9435E79263F04D679E63223C /* PushPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "PushPlugin.m"; path = "phonegap-plugin-push/PushPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		88F3564884B0440C896D14E8 /* AppDelegate+notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+notification.h"; path = "phonegap-plugin-push/AppDelegate+notification.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		6F6209DC1FB94A019A7604CC /* PushPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PushPlugin.h"; path = "phonegap-plugin-push/PushPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,12 +250,12 @@
 				49B0702E6A8F48F8A0B2E1DF /* UIWebViewExtension.m */,
 				52E4A170D9104D50958B0534 /* IonicKeyboard.h */,
 				9897D399B28740C496A72830 /* UIWebViewExtension.h */,
-				7D6FDC9664D54053A28EDE4B /* AppDelegate+notification.m */,
-				687A990D535145FAB9BA1128 /* PushPlugin.m */,
-				439553B14FE347E89CD5F525 /* AppDelegate+notification.h */,
-				994A34461CDC4B1280DCB717 /* PushPlugin.h */,
 				26DCDDA728A34947AA122586 /* CDVLocation.m */,
 				364482ACB43B45FE8F0AD217 /* CDVLocation.h */,
+				0F4A61E7ED5E4813913A2F2C /* AppDelegate+notification.m */,
+				9435E79263F04D679E63223C /* PushPlugin.m */,
+				88F3564884B0440C896D14E8 /* AppDelegate+notification.h */,
+				6F6209DC1FB94A019A7604CC /* PushPlugin.h */,
 			);
 			name = Plugins;
 			path = "ionic-front/Plugins";
@@ -447,9 +447,9 @@
 				9AF5813E84BE4131ADDEB36D /* CDVStatusBar.m in Sources */,
 				5F95D0FF32B44C79A385C4E3 /* IonicKeyboard.m in Sources */,
 				3459DD70279B4A4EA782B37B /* UIWebViewExtension.m in Sources */,
-				31A566B343144AF887D210F1 /* AppDelegate+notification.m in Sources */,
-				694331614D9F42118556FE8F /* PushPlugin.m in Sources */,
 				C0C5F1CD818F45BEB38D6D40 /* CDVLocation.m in Sources */,
+				0DBE386DE3AF4AE5ADB60994 /* AppDelegate+notification.m in Sources */,
+				61E7436A285A4A50A7CF9F80 /* PushPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

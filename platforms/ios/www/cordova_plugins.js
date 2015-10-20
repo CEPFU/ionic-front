@@ -44,13 +44,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
         "id": "cordova-plugin-geolocation.Coordinates",
         "clobbers": [
@@ -77,6 +70,13 @@ module.exports = [
         "clobbers": [
             "navigator.geolocation"
         ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -88,8 +88,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "1.0.1",
     "cordova-plugin-whitelist": "1.0.0",
     "ionic-plugin-keyboard": "1.0.7",
-    "phonegap-plugin-push": "1.3.0",
-    "cordova-plugin-geolocation": "1.0.1"
+    "cordova-plugin-geolocation": "1.0.1",
+    "phonegap-plugin-push": "1.3.0"
 }
 // BOTTOM OF METADATA
 });

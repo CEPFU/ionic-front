@@ -75,10 +75,10 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
-    <feature name="PushNotification">
-        <param name="ios-package" value="PushPlugin" />
-    </feature>
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
     </feature>
 </widget>
