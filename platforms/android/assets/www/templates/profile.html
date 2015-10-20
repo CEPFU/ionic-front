@@ -1,0 +1,28 @@
+<ion-view view-title="{{profile.name}}">
+  <ion-content>
+    <ion-list>
+      <label class="item item-input">
+        <div class="input-label">Profile Name</div>
+        <input type="text" placeholder="Name" ng-model="profile.name" >
+      </label>
+      <label class="item item-input" >
+        <div class="input-label">Location</div>
+        <button class="button button-clear" ui-sref="app.selectLocation">{{locationDescription() || 'Select a location'}}</button>
+      </label>
+      <label class="item item-input" ng-click="addProperty()">
+        <div class="input-label">New Property</div>
+        <button class="button button-clear"><i class="icon ion-plus"></i> Add Property</button>
+      </label>
+      <div ng-repeat="property in profile.properties">
+        <label class="item item-input item-select">
+          <div class="input-label">Property</div>
+          <select ng-model="property.name"
+                  ng-options="available.name as (available.name | titleCase) for available in asList(config.profile.properties)">
+              <option value="" disabled="disabled">Choose a property</option>
+          </select>
+        </label>
+        <profile-input ng-repeat="input in asList(config.profile.properties[property.name].inputs)" input="input" profile="profile" property="property"></profile-input>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>
