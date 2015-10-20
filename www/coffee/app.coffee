@@ -54,7 +54,7 @@ angular.module('starter', [
         return
       'onRegister': (data) ->
         console.log 'Device token (X):', data.token
-        alert data.token
+        # alert data.token
         user = $ionicUser.get()
         if not user.user_id
           user.user_id = $ionicUser.generateGUID()
@@ -77,16 +77,6 @@ angular.module('starter', [
       console.log 'Got token', data.token, data.platform
       # Do something with the token
       return
-
-
-    $http.get('http://pokeapi.co/api/v1/pokemon/1/').then(
-      (success) ->
-        console.log 'Win:', success
-        alert success.data.name
-    ,
-      (failure) ->
-        console.log 'Fail:', failure
-    )
 )
 
 .config ($stateProvider, $urlRouterProvider) ->
