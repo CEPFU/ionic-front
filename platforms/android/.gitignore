@@ -4,6 +4,7 @@ local.properties
 /gradlew
 /gradlew.bat
 /gradle
+/.gradle
 # Ant builds
 ant-build
 ant-gen
@@ -12,6 +13,7 @@ gen
 out
 # Gradle builds
 /build
+/CordovaLib/build
 
 # Assets, automatically updated
 /assets
