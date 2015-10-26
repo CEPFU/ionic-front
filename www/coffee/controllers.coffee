@@ -26,19 +26,28 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
   $scope.profile = ProfileService.getProfile $stateParams.profileId
   LocationService.currentLocation = $scope.profile.location
 
-  $scope.locationDescription = () ->
+  @nearby = () ->
     if $scope.profile?.location?
+      RestService.findNearbyStations $scope.profile.location, (locations) ->
+        if locations? and locations.length > 0
+          $scope.profile.station = locations[0]
+
+  $scope.locationDescription = () ->
+    if $scope.profile?.station?
+      $scope.profile.station.locationDescription
+    else if $scope.profile?.location?
       "(#{$scope.profile.location.latlng.lat},
         #{$scope.profile.location.latlng.lng})"
     else
       null
 
   # When we come back from the location page
-  $scope.$watch (() -> ProfileService.currentLocation), (newLocation) ->
+  $scope.$watch (() -> ProfileService.currentLocation), (newLocation) =>
     if newLocation?
       ProfileService.currentLocation = undefined
       LocationService.currentLocation = newLocation
       $scope.profile.location = newLocation
+      @nearby()
 
   # On exit: Persist changes to profile
   $scope.$on '$destroy', ($destroy) ->

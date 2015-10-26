@@ -115,10 +115,27 @@ angular.module 'starter.services', ['ionic.service.core']
     @endpointUrl + $rootScope.config.api.endpoints[target].url
 
   @getUser = () ->
-    user = $ionicUser.get()
-    if not user.user_id
-      user.user_id = $ionicUser.generateGUID()
+    user = Ionic.User.current()
+    if not user.id
+      user.id = Ionic.User.anonymousId()
+      user.save()
     user
+
+  @findNearbyStations = (location, callback, limit=3) ->
+    url = @getApiUrl 'nearby'
+    $http.post(url + limit,
+      latitude: location.latlng.lat
+      longitude: location.latlng.lng
+    ).then(
+      (succ) ->
+        console.log 'Success:', succ
+        locations = succ.data
+        if callback?
+          callback locations
+      ,
+      (fail) ->
+        console.log 'Failure:', fail
+    )
 
   # Copies the specified properties into a new object (shallow?)
   @selectiveCopy = (obj, properties) ->
@@ -144,19 +161,30 @@ angular.module 'starter.services', ['ionic.service.core']
           value = parseFloat value
     value
 
+  @transformLocation = (location) ->
+    accuracy: location.accuracy
+    position:
+      latitude: location.latlng.lat
+      longitude: location.latlng.lng
+    timestamp: location.timestamp
+
+
   @transformProfile = (profile) ->
-    newProfile = @selectiveCopy profile, ['name', 'location', 'id']
-    newProfile.rule = {
+    newProfile = @selectiveCopy profile, ['name', 'id']
+
+    newProfile.userId = @getUser().id
+    newProfile.location = @transformLocation profile.location
+
+    rule =
       '@class': 'JSONAnd'
       ofOperands: []
-    }
 
-    for prop in profile.properties?
+    for prop in (profile.properties ? [])
       config = $rootScope.config.profile.properties[prop.name]
 
       operand = {
         '@class': 'JSONMatchToStation'
-        toStation: newProfile.location # TODO: Find new format?!
+        toStation: profile.station.locationId # TODO: Find new format?!
       }
 
       console.log 'Prop:', prop
@@ -175,7 +203,11 @@ angular.module 'starter.services', ['ionic.service.core']
             toObject: value
           }
 
-      newProfile.rule.ofOperands.push operand
+      rule.ofOperands.push operand
+
+    newProfile.profile =
+      rule: rule
+      notifications: []
 
     newProfile
 
@@ -183,14 +215,13 @@ angular.module 'starter.services', ['ionic.service.core']
     console.log 'Sending profile to backend:', profile
     url = @getApiUrl 'profile'
 
-    payload = {
-      profile: @transformProfile profile
-      user: @getUser()
-    }
+    payload = @transformProfile profile
 
     console.log 'API URL:', url
     console.log 'Payload:', payload
     console.log 'JSON Payload:', JSON.stringify payload
+
+    $http.post url, payload
 
     null
 

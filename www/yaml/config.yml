@@ -3,6 +3,8 @@ api:
   endpoints:
     profile:
       url: profile/
+    nearby:
+      url: location/dist/
 
 inputs:
   comparison: &comparisonOperator
