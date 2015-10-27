@@ -108,7 +108,8 @@ angular.module 'starter.services', ['ionic.service.core']
   @currentLocation = undefined
   null
 
-.service 'RestService', ($rootScope, $ionicUser, $http, filterFilter) ->
+.service 'RestService', ($rootScope, $ionicUser, $http,
+filterFilter, $ionicCoreSettings) ->
 
   @endpointUrl = $rootScope.config.api.mainUrl
   @getApiUrl = (target) ->
@@ -174,6 +175,7 @@ angular.module 'starter.services', ['ionic.service.core']
 
     newProfile.userId = @getUser().id
     newProfile.location = @transformLocation profile.location
+    newProfile.appId = $ionicCoreSettings.get('app_id')
 
     rule =
       '@class': 'JSONAnd'
@@ -187,8 +189,8 @@ angular.module 'starter.services', ['ionic.service.core']
         toStation: profile.station.locationId # TODO: Find new format?!
       }
 
-      console.log 'Prop:', prop
-      console.log 'Config:', config
+      # console.log 'Prop:', prop
+      # console.log 'Config:', config
 
       switch config.javaStructure.type
         when 'attributeToObject'
@@ -207,19 +209,17 @@ angular.module 'starter.services', ['ionic.service.core']
 
     newProfile.profile =
       rule: rule
-      notifications: []
 
     newProfile
 
   @sendProfile = (profile) ->
-    console.log 'Sending profile to backend:', profile
     url = @getApiUrl 'profile'
 
     payload = @transformProfile profile
 
-    console.log 'API URL:', url
-    console.log 'Payload:', payload
-    console.log 'JSON Payload:', JSON.stringify payload
+    # console.log 'API URL:', url
+    # console.log 'Payload:', payload
+    # console.log 'JSON Payload:', JSON.stringify payload
 
     $http.post url, payload
 
