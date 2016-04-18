@@ -32,7 +32,8 @@ angular.module('starter', [
         undefined
       else
         JSON.parse value
-}]
+  }
+]
 
 .run(($ionicPlatform, $ionicUser, $rootScope, $http) ->
   $ionicPlatform.ready ->
