@@ -5,6 +5,8 @@ api:
       url: profile/
     nearby:
       url: location/dist/
+    newLocation:
+      url: location/new/
 
 inputs:
   comparison: &comparisonOperator

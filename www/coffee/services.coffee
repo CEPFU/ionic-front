@@ -1,4 +1,4 @@
-angular.module 'starter.services', ['ionic.service.core']
+angular.module 'starter.services', ['ionic.service.core', 'starter.config']
 
 .service 'MapService', () ->
   @map = null
@@ -74,7 +74,7 @@ angular.module 'starter.services', ['ionic.service.core']
 
   null
 
-.service 'ProfileService', ($localStorage) ->
+.service 'ProfileService', ($localStorage, RestService) ->
   @newLocation = undefined
 
   @persist = (profileData) ->
@@ -98,7 +98,7 @@ angular.module 'starter.services', ['ionic.service.core']
   @deleteProfile = (profile) ->
     delete @profileData.profiles[profile.id]
     @persist()
-    # TODO: Delete profile on server
+    RestService.deleteProfile profile
 
 
   @profileData = $localStorage.getObject 'profiles'
@@ -115,11 +115,11 @@ angular.module 'starter.services', ['ionic.service.core']
   null
 
 .service 'RestService', ($rootScope, $ionicUser, $http,
-filterFilter, $ionicCoreSettings) ->
+filterFilter, $ionicCoreSettings, ConfigService) ->
 
-  @endpointUrl = $rootScope.config.api.mainUrl
+  @endpointUrl = ConfigService.api.mainUrl
   @getApiUrl = (target) ->
-    @endpointUrl + $rootScope.config.api.endpoints[target].url
+    @endpointUrl + ConfigService.api.endpoints[target].url
 
   @getUser = () ->
     user = Ionic.User.current()
@@ -188,7 +188,7 @@ filterFilter, $ionicCoreSettings) ->
       ofOperands: []
 
     for prop in (profile.properties ? [])
-      config = $rootScope.config.profile.properties[prop.name]
+      config = ConfigService.profile.properties[prop.name]
 
       operand = {
         '@class': 'JSONMatchToStation'
@@ -231,5 +231,10 @@ filterFilter, $ionicCoreSettings) ->
 
     null
 
+  @deleteProfile = (profile) ->
+    url = @getApiUrl 'profile'
+    # TODO: simplify this, we only really need the user and profile ID!
+    payload = transformProfile profile
+    $http.delete url, payload
 
   null

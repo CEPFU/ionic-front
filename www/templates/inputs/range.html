@@ -1,4 +1,4 @@
-<label class="item item-input range" ng-init="property.inputs[input.name].value = input.value" >
+<label class="item item-input range" ng-init="property.inputs[input.name].value = property.inputs[input.name].value != null ? property.inputs[input.name].value : input.value" >
   <div class="input-label">{{input.displayName ? (input.name | titleCase) : ""}} {{property.inputs[input.name].value}}</div>
   <i class="icon" ng-class="input.iconBefore" ng-show="input.iconBefore != null"></i>
   {{input.min}}

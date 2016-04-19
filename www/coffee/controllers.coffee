@@ -1,9 +1,6 @@
 angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
-.controller 'AppCtrl', ($rootScope, $http) ->
-  $http.get('json/config.json').success (data) ->
-    $rootScope.config = data
-
+.controller 'AppCtrl', ($rootScope) ->
   $rootScope.asList = (object) ->
     res = []
     for name, prop of object
@@ -24,15 +21,15 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
   @deleteProfile = (profile) ->
     ProfileService.deleteProfile profile
     $scope.profiles = ProfileService.getProfiles()
-    console.log $scope.profiles
 
 
   null
 
 .controller 'SingleProfileCtrl', ($rootScope, $scope, $stateParams,
-    ProfileService, LocationService, RestService, filterFilter) ->
+    ProfileService, LocationService, RestService, filterFilter, ConfigService) ->
   $scope.profile = ProfileService.getProfile $stateParams.profileId
   LocationService.currentLocation = $scope.profile.location
+  $scope.ConfigService = ConfigService
 
   @nearby = () ->
     if $scope.profile?.location?

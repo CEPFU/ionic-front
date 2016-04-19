@@ -17,11 +17,11 @@
         <label class="item item-input item-select">
           <div class="input-label">Property</div>
           <select ng-model="property.name"
-                  ng-options="available.name as (available.name | titleCase) for available in asList(config.profile.properties)">
+                  ng-options="available.name as (available.name | titleCase) for available in asList(ConfigService.profile.properties)">
               <option value="" disabled="disabled">Choose a property</option>
           </select>
         </label>
-        <profile-input ng-repeat="input in asList(config.profile.properties[property.name].inputs)" input="input" profile="profile" property="property"></profile-input>
+        <profile-input ng-repeat="input in asList(ConfigService.profile.properties[property.name].inputs)" input="input" profile="profile" property="property"></profile-input>
       </div>
     </ion-list>
   </ion-content>
