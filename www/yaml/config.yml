@@ -10,6 +10,7 @@ inputs:
   comparison: &comparisonOperator
     name: is
     type: select
+    value: lt
     options:
       lt:
         value: lt
@@ -40,12 +41,14 @@ profile:
         is: *comparisonOperator
         than:
           name: than
+          displayName: false
           type: range
           valueType: int
           iconBefore: ion-ios-sunny-outline
           iconAfter: ion-ios-snowy
           min: -40
           max: 60
+          value: 20
       javaStructure:
         type: attributeToObject
         classFrom: is
@@ -56,12 +59,14 @@ profile:
         is: *comparisonOperator
         than:
           name: than
+          displayName: false
           type: range
           valueType: int
           iconBefore: ion-ios-sunny-outline
           iconAfter: ion-ios-snowy
           min: 0
           max: 100
+          value: 50
       javaStructure:
         type: attributeToObject
         classFrom: is
