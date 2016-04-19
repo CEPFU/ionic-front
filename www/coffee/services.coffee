@@ -95,6 +95,12 @@ angular.module 'starter.services', ['ionic.service.core']
     @putProfile newProfile
     newProfile
 
+  @deleteProfile = (profile) ->
+    delete @profileData.profiles[profile.id]
+    @persist()
+    # TODO: Delete profile on server
+
+
   @profileData = $localStorage.getObject 'profiles'
   if not @profileData?
     @profileData =

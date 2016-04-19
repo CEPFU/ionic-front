@@ -14,10 +14,18 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
 
 .controller 'ProfilesCtrl', ($scope, ProfileService, $state) ->
   $scope.profiles = ProfileService.getProfiles()
+  @listCanSwipe = true
   @newProfile = () ->
     np = ProfileService.newProfile()
+    # FIXME: Is this necessary?
     $scope.profiles = ProfileService.getProfiles()
     $state.go 'app.profile', {profileId: np.id}
+
+  @deleteProfile = (profile) ->
+    ProfileService.deleteProfile profile
+    $scope.profiles = ProfileService.getProfiles()
+    console.log $scope.profiles
+
 
   null
 
