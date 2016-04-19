@@ -9,11 +9,14 @@ var sh = require('shelljs');
 var coffee = require('gulp-coffee');
 var yaml = require('gulp-yaml');
 var sourcemaps = require('gulp-sourcemaps');
+var replace = require('gulp-replace');
+var fs = require('fs');
 
 var paths = {
   sass: ['./scss/*.scss'],
-  coffee: ['./www/**/*.coffee'],
-  yaml: ['./www/**/*.yml']
+  coffee: ['./www/coffee/*.coffee'],
+  yaml: ['./www/**/*.yml'],
+  config: ['./www/json/config.json']
 };
 
 gulp.task('default', ['yaml', 'sass', 'coffee']);
@@ -39,20 +42,23 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('coffee', function(done) {
+
+
   gulp.src(paths.coffee)
-  .pipe(sourcemaps.init())
-  .pipe(coffee({bare: false, map: true})
-  .on('error', gutil.log.bind(gutil, 'Coffee Error')))
-  .pipe(concat('application.js'))
-  .pipe(sourcemaps.write('./maps'))
-  .pipe(gulp.dest('./www/js'))
-  .on('end', done)
-})
+    .pipe(replace('<<<insert-config-here>>>', fs.readFileSync('./www/json/config.json')))
+    .pipe(sourcemaps.init())
+    .pipe(coffee({bare: false, map: true})
+        .on('error', gutil.log.bind(gutil, 'Coffee Error')))
+    .pipe(concat('application.js'))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('./www/js'))
+    .on('end', done)
+});
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.coffee, ['coffee']);
   gulp.watch(paths.yaml, ['yaml']);
+  gulp.watch(paths.coffee.concat(paths.config), ['coffee']);
 });
 
 gulp.task('install', ['git-check'], function() {
