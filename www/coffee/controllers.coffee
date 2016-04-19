@@ -22,7 +22,6 @@ angular.module('starter.controllers', ['angular.filter', 'starter.services'])
     ProfileService.deleteProfile profile
     $scope.profiles = ProfileService.getProfiles()
 
-
   null
 
 .controller 'SingleProfileCtrl', ($rootScope, $scope, $stateParams,

@@ -232,9 +232,9 @@ filterFilter, $ionicCoreSettings, ConfigService) ->
     null
 
   @deleteProfile = (profile) ->
-    url = @getApiUrl 'profile'
+    url = @getApiUrl 'deleteProfile'
     # TODO: simplify this, we only really need the user and profile ID!
-    payload = transformProfile profile
-    $http.delete url, payload
+    payload = @transformProfile profile
+    $http.post url, payload
 
   null
