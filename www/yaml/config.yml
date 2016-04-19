@@ -44,8 +44,8 @@ profile:
           displayName: false
           type: range
           valueType: int
-          iconBefore: ion-ios-sunny-outline
-          iconAfter: ion-ios-snowy
+          iconBefore: ion-ios-snowy
+          iconAfter: ion-ios-sunny-outline
           min: -40
           max: 60
           value: 20
@@ -63,7 +63,7 @@ profile:
           type: range
           valueType: int
           iconBefore: ion-ios-sunny-outline
-          iconAfter: ion-ios-snowy
+          iconAfter: ion-ios-rainy-outline
           min: 0
           max: 100
           value: 50
